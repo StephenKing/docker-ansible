@@ -42,7 +42,12 @@ RUN echo "===> Installing python, sudo, and supporting tools..."  && \
     \
     echo "===> Adding hosts for convenience..."        && \
     mkdir -p /etc/ansible                              && \
-    echo 'localhost' > /etc/ansible/hosts
+    echo 'localhost' > /etc/ansible/hosts              && \
+    \
+    echo "===> Try to fix Jenkins requiring ID 1000"   && \
+    useradd -u 1000 dummy                              && \
+    mkdir -p /home/dummy/.ssh                          && \
+    chown -R dummy /home/dummy
 
 
 # default command: display Ansible version
